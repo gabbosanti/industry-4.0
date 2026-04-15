@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "author": "Samuele Burattini",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": -225.7, "left": 91, "attrs": {} },
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": 45, "left": -122, "attrs": {} },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": -111.2,
+      "left": -256.98,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": -208,
+      "left": -277.6,
+      "attrs": {}
+    },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -270.1, "left": -38.6, "attrs": {} },
+    { "type": "wokwi-hc-sr04", "id": "ultrasonic1", "top": -260, "left": 300, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -22.8,
+      "left": 128.6,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_echo1",
+      "top": -53.35,
+      "left": 296.2,
+      "rotate": 180,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_echo2",
+      "top": -14.4,
+      "left": 249.05,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_echo5",
+      "top": 62.4,
+      "left": 249.05,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "pot1:VCC", "bb1:tp.10", "red", [ "h-0.8", "v234.7" ] ],
+    [ "pot1:SIG", "esp:D34", "blue", [ "h-0.4", "v95.5" ] ],
+    [ "ldr1:AO", "esp:D35", "blue", [ "h134.4", "v-144.3" ] ],
+    [ "ultrasonic1:TRIG", "esp:D18", "green", [ "v21.5", "h-83.7" ] ],
+    [ "ultrasonic1:ECHO", "r_echo1:1", "violet", [ "v117.5", "h-64.9", "h-28.8" ] ],
+    [ "r_echo1:2", "esp:D19", "violet", [ "h1.2", "v-143.9" ] ],
+    [ "r_echo1:2", "r_echo2:1", "black", [ "h1.2" ] ],
+    [ "esp:3V3", "bb1:tp.25", "red", [ "v0" ] ],
+    [ "esp:D5", "led1:A", "yellow", [ "h57.3", "v163.2", "h-96" ] ],
+    [ "led1:C", "bb1:tn.22", "black", [ "v0" ] ],
+    [ "esp:GND.1", "bb1:tn.25", "black", [ "h9.3", "v144" ] ],
+    [ "esp:VIN", "bb1:bp.15", "red", [ "h0" ] ],
+    [ "esp:GND.2", "bb1:bn.14", "black", [ "h0" ] ],
+    [ "ultrasonic1:VCC", "bb1:bp.25", "red", [ "v0" ] ],
+    [ "ultrasonic1:GND", "bb1:bn.25", "black", [ "v0" ] ],
+    [ "ldr1:GND", "bb1:tn.2", "black", [ "h0" ] ],
+    [ "ldr1:VCC", "bb1:tp.3", "red", [ "h0" ] ],
+    [ "pot1:GND", "bb1:tn.8", "black", [ "v0" ] ],
+    [ "pir1:VCC", "bb1:bp.1", "red", [ "v0" ] ],
+    [ "pir1:GND", "bb1:bn.1", "black", [ "v0" ] ],
+    [ "r_echo2:2", "r_echo5:1", "black", [ "h0" ] ],
+    [ "r_echo5:2", "bb1:tn.24", "black", [ "h0" ] ],
+    [ "pir1:OUT", "esp:D26", "green", [ "v28.8", "h76.66", "v-191.9" ] ]
+  ],
+  "serialMonitor": { "collapse": false, "convertEol": false, "display": "auto", "newline": "lf" },
+  "dependencies": {}
+}

@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "author": "Samuele Burattini",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": -89.4, "left": -266, "attrs": {} },
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": -216.1, "left": 91, "attrs": {} },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": -226.4,
+      "left": -112.98,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -80.4,
+      "left": -15.4,
+      "attrs": { "color": "red" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "esp:VIN", "pir1:VCC", "red", [ "v76.8", "h-307.2" ] ],
+    [ "esp:GND.2", "bb1:tn.25", "black", [ "v-0.1", "h-49.6" ] ],
+    [ "bb1:26t.b", "bb1:tn.20", "black", [ "h-9.6", "h-11.2" ] ],
+    [ "led1:A", "bb1:27t.a", "", [ "$bb" ] ],
+    [ "led1:C", "bb1:26t.a", "", [ "$bb" ] ],
+    [ "pir1:GND", "bb1:tn.16", "black", [ "v0" ] ],
+    [ "bb1:27t.b", "esp:D14", "gold", [ "h67.2", "v-67.3" ] ],
+    [ "pir1:OUT", "esp:D27", "green", [ "v0" ] ]
+  ],
+  "serialMonitor": { "collapse": false, "convertEol": false, "display": "auto", "newline": "lf" },
+  "dependencies": {}
+}

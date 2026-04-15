@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "author": "Samuele Burattini",
+  "editor": "wokwi",
+  "serialMonitor": {
+  "collapse": false,
+  "convertEol": false,
+  "display": "auto",
+  "newline": "lf"
+  },
+  "parts": [
+      { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": -14.5, "left": 71.8, "attrs": {} },
+      { "type": "wokwi-potentiometer", "id": "pot1", "top": 27.5, "left": 211, "attrs": {} }
+  ],
+  "connections": [
+      [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+      [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+      [ "esp:3V3", "pot1:VCC", "red", [ "h86.1", "v-48" ] ],
+      [ "esp:GND.1", "pot1:GND", "black", [ "h0" ] ],
+      [ "pot1:SIG", "esp:D34", "blue", [ "v134.4", "h-192.4", "v-191.8" ] ]
+  ],
+  "dependencies": {}
+}
