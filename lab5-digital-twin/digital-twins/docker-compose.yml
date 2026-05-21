@@ -1,0 +1,45 @@
+include:
+  - ./ditto/docker-compose.yml
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    container_name: dt_mosquitto
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+    ports:
+      - "1883:1883"
+    networks:
+      - default
+
+  # mock-device:
+  #   image: python:3.10-slim
+  #   container_name: dt_mock_device
+  #   environment:
+  #     MQTT_BROKER: mosquitto
+  #     MQTT_PORT: "1883"
+  #   volumes:
+  #     - ./:/app
+  #   working_dir: /app
+  #   command: sh -c "pip install --no-cache-dir uv && uv sync --no-install-project && .venv/bin/python /app/03_mock_device/mock_device.py"
+  #   depends_on:
+  #     - mosquitto
+  #     - gateway
+  #   networks:
+  #     - default
+
+  # dashboard:
+  #   image: python:3.10-slim
+  #   container_name: dt_dashboard
+  #   environment:
+  #     DITTO_BASE_URL: http://gateway:8080/api/2
+  #   volumes:
+  #     - ./:/app
+  #   working_dir: /app
+  #   ports:
+  #     - "8501:8501"
+  #   command: sh -c "pip install --no-cache-dir uv && uv sync --no-install-project && .venv/bin/streamlit run /app/05_application/dashboard.py --server.port=8501 --server.address=0.0.0.0"
+  #   depends_on:
+  #     - gateway
+  #   networks:
+  #     - default
